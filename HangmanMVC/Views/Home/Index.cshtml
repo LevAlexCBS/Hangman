@@ -1,0 +1,36 @@
+﻿@model HangmanMVC.Models.Hangman
+@{
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    @for (int i = 0; i < Model.Answer.Length; i++)
+    {
+        @(Model.Answer[i] + " ")
+
+    }
+    <p> Remaing letters: @Model.RemainingLetters </p>
+    <hr />
+
+
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <input type="text" name="qrcode" />
+        <input type="submit" value="Generate" />
+    }
+    <hr />
+    @if (ViewBag.QRCodeImage != null)
+    {
+        <img src="@ViewBag.QRCodeImage" alt="" style="height:227px;width:227px" />
+    }
+</body>
+</html>
